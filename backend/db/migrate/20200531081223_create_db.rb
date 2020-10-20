@@ -3,6 +3,10 @@ class CreateDb < ActiveRecord::Migration[6.0]
     create_table :users do |t|
       t.string :name
     end
+    create_table :user_friends do |t|
+      t.integer :user_id
+      t.integer :friend_id
+    end
     create_table :movies do |t|
       t.string :name
     end

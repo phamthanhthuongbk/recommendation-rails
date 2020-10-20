@@ -10,3 +10,41 @@
   </tr>
   <% end %>
 </table>
+
+
+<h2>Friends of <%= @user.name %>:</h2>
+<div style="display: flex;column-gap: 150px;width: 100%;">
+  <div>
+    <table><h2>Friends</h2>
+      <% @user.friends.each do |user, value| %>
+      <tr>
+        <td><%= user.name %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div>
+    <table><h2>Not Friends</h2>
+      <% (User.where.not(id: @user.id) - @user.friends).each do |user, value| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= link_to "Add as friend", add_friend_user_path(@user, :friend_id => user.id) %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div>
+    <table><h2>Recommended Friend</h2>
+      <tr>
+        <th>Name</th>
+        <th>Rating</th>
+      </tr>
+      <% @user.recommend_friends.each do |user, value| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= value.round(2) %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

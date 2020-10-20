@@ -6,4 +6,9 @@ class UsersController < ApplicationController
 
   def index
   end
+
+  def add_friend
+    @user.friends << User.find(params[:friend_id])
+    redirect_to action: "show"
+  end
 end

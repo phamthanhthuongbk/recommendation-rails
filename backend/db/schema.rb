@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 2020_05_31_081223) do
     t.string "name"
   end
 
+  create_table "user_friends", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name"
   end
