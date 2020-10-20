@@ -19,8 +19,8 @@ i = 0
 end
 # randomly associate movies with users, where no user has the same movie more than once
 100.times do
-  user = User.all[rand(0…30)]
-  movie = Movie.all[rand(0…15)]
+  user = User.all[rand(30)]
+  movie = Movie.all[rand(15)]
   if user.movies.include?(movie)
     next
   else

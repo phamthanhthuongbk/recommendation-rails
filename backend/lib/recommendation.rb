@@ -11,7 +11,9 @@ module Recommendation
         # calculate the weight (recommendation rating)
         weight = common_movies.size.to_f / user.movies.size
         # add the extra movies the other user liked
-        (user.movies — common_movies).each do |movie|
+        common_movie_ids = common_movies.pluck(:id)
+        user.movies.each do |movie|
+          next if common_movie_ids.include? movie.id
           # put the movie along with the cumulative weight into hash
           recommended[movie] += weight
         end
